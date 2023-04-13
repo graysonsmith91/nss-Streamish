@@ -11,7 +11,6 @@ const SearchVideos = ({ searchTerm, setSearchTerm, sortDesc, setSortDesc, setVid
     // }, [searchTerm, sortDesc]);
 
     const handleSearch = () => {
-
         const searchedVideos = searchVideos(searchTerm, sortDesc);
         setVideos(searchedVideos);
     }

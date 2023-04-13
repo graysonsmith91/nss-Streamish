@@ -21,7 +21,7 @@ export const VideoContainer = () => {
                 sortDesc={sortDesc}
                 setSortDesc={setSortDesc}
                 setVideos={setVideos} />
-            <VideoList videos={videos} setVideos={setVideos} />
+            <VideoList videos={videos} />
         </>
     );
 
