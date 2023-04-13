@@ -103,7 +103,6 @@ namespace Streamish.Repositories
                         while (reader.Read())
                         {
                             var userId = DbUtils.GetInt(reader, "UserId");
-                            //var videoId = DbUtils.GetInt(reader, "VideoId");
 
                             if (userProfile == null)
                             {
