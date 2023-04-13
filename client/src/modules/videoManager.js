@@ -10,6 +10,12 @@ export const getAllVideosWithComments = () => {
         .then((res) => res.json())
 };
 
+//https://localhost:5001/api/video/Search?q=NET&sortDesc=False
+export const searchVideos = (searchTerm, sortDesc) => {
+    return fetch(`${baseUrl}/Search?q=${searchTerm}&sortDesc=${sortDesc}`)
+        .then((res) => res.json())
+};
+
 export const addVideo = (video) => {
     return fetch(baseUrl, {
         method: "POST",
