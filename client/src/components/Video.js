@@ -12,23 +12,14 @@ const Video = ({ video }) => {
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen />
-
                 <p>
                     <strong>{video.title}</strong>
                 </p>
                 <p>{video.description}</p>
-                <ul>
-                    <li>{video.comments}</li>
-                </ul>
+                <p>{video.comments.map(comment => <li>{comment.message}</li>)}</p>
             </CardBody>
         </Card>
     );
 };
-
-// const displayComments = ({ video }) => {
-//     for (const comment of video.comments) {
-//         return <li>{comment}</li>
-//     }
-// }
 
 export default Video;
