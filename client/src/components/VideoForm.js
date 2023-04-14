@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { addVideo } from "../modules/videoManager";
+import { useNavigate } from "react-router-dom";
 
 const VideoForm = () => {
+    const navigate = useNavigate();
     const [newVideo, setNewVideo] = useState({
         title: "",
         description: "",
         url: ""
     })
 
-    const handleSubmitButtonClick = () => {
+    const handleSubmitButtonClick = (event) => {
+        event.preventDefault();
 
         const videoToSendToAPI = {
             Title: newVideo.title,
@@ -20,7 +23,10 @@ const VideoForm = () => {
             window.alert("Please complete add video form")
         }
         else {
-            addVideo(videoToSendToAPI)
+            addVideo(videoToSendToAPI).then((p) => {
+                // Navigate the user back to the home route
+                navigate("/");
+            });
         }
     }
 
