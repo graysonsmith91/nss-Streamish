@@ -11,9 +11,11 @@ const SearchVideos = ({ searchTerm, setSearchTerm, sortDesc, setSortDesc, setVid
     // }, [searchTerm, sortDesc]);
 
     const handleSearch = () => {
-        const searchedVideos = searchVideos(searchTerm, sortDesc);
-        setVideos(searchedVideos);
+        searchVideos(searchTerm, sortDesc).then((searchedVideos) => {
+            setVideos(searchedVideos);
+        })
     }
+    //.then maybe above?
 
     return (
         <div className="container">
