@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { addVideo } from "../modules/videoManager";
 
-const VideoForm = ({ setVideos }) => {
+const VideoForm = () => {
     const [newVideo, setNewVideo] = useState({
         title: "",
         description: "",
