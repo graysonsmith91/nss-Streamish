@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import SearchVideos from "./SearchVideos";
 import VideoList from "./VideoList";
 import { getAllVideosWithComments } from "../modules/videoManager";
+import VideoForm from "./VideoForm";
 
 
 export const VideoContainer = () => {
@@ -21,6 +22,7 @@ export const VideoContainer = () => {
                 sortDesc={sortDesc}
                 setSortDesc={setSortDesc}
                 setVideos={setVideos} />
+            <VideoForm />
             <VideoList videos={videos} />
         </>
     );
