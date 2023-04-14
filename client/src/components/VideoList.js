@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
 import Video from './Video';
-import { getAllVideosWithComments } from "../modules/videoManager";
 
 const VideoList = ({ videos }) => {
     return (

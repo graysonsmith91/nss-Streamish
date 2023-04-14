@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from "react";
 import { searchVideos } from "../modules/videoManager";
 
 
 const SearchVideos = ({ searchTerm, setSearchTerm, sortDesc, setSortDesc, setVideos }) => {
-    // const [searchTerm, setSearchTerm] = useState("");
-    // const [sortDesc, setSortDesc] = useState(false);
-
-    // useEffect(() => {
-    //     searchVideos(searchTerm, sortDesc).then(searchedVideos => setVideos(searchedVideos));
-    // }, [searchTerm, sortDesc]);
 
     const handleSearch = () => {
         searchVideos(searchTerm, sortDesc).then((searchedVideos) => {
             setVideos(searchedVideos);
         })
     }
-    //.then maybe above?
 
     return (
         <div className="container">
