@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Video = ({ video }) => {
     return (
         <Card >
-            <p className="text-left px-2">Posted by: {video.userProfile.name}</p>
+            <Link to={`/users/${video.userProfileId}`}><p className="text-left px-2">Posted by: {video.userProfile.name}</p></Link>
             <CardBody>
                 <iframe className="video"
                     src={video.url}
