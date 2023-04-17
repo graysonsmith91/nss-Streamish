@@ -1,4 +1,5 @@
 const baseUrl = '/api/video';
+const userBaseUrl = '/api/userprofile';
 
 export const getAllVideos = () => {
     return fetch(baseUrl)
@@ -28,4 +29,9 @@ export const addVideo = (video) => {
         },
         body: JSON.stringify(video),
     });
+};
+
+export const getVideosByUser = (id) => {
+    return fetch(`${userBaseUrl}/videos/${id}`)
+        .then((res) => res.json())
 };
