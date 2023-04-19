@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Streamish.Repositories;
 using Streamish.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace Streamish.Controllers
 {
@@ -59,6 +60,7 @@ namespace Streamish.Controllers
         [HttpPost]
         public IActionResult Post(UserProfile userProfile)
         {
+            userProfile.DateCreated = DateTime.Now;
             _userProfileRepository.Add(userProfile);
             return CreatedAtAction("Get", new { id = userProfile.Id }, userProfile);
         }
@@ -80,6 +82,46 @@ namespace Streamish.Controllers
         {
             _userProfileRepository.Delete(id);
             return NoContent();
+        }
+
+        [HttpGet("Me")]
+        public IActionResult Me()
+        {
+            var userProfile = GetCurrentUserProfile();
+            if (userProfile == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(userProfile);
+        }
+
+        [HttpGet("DoesUserExist/{firebaseUserId}")]
+        public IActionResult DoesUserExist(string firebaseUserId)
+        {
+            var userProfile = _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
+            if (userProfile == null)
+            {
+                return NotFound();
+            }
+            return Ok();
+        }
+
+        //[HttpPost("Register")]
+        //public IActionResult Register(UserProfile userProfile)
+        //{
+        //    // All newly registered users start out as a "user" user type (i.e. they are not admins)
+        //    // userProfile.UserTypeId = UserType.USER_TYPE_ID;
+        //    userProfile.DateCreated = DateTime.Now;
+        //    _userProfileRepository.Add(userProfile);
+        //    return CreatedAtAction(
+        //        nameof(GetByFirebaseUserId), new { firebaseUserId = userProfile.FirebaseUserId }, userProfile);
+        //}
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
         }
     }
 }
